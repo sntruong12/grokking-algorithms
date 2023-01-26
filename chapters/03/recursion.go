@@ -137,8 +137,8 @@ var mainbox = []item{
 
 // Recursive solution
 // every recusive function will have two parts
-// the base case
-// and the recursive case
+// the base case - when it doesn't call itself again so that no infinite loop
+// and the recursive case - when it calls itself
 func lookForKey(items []item) {
 	for _, item := range items {
 		if item.isABox { // recursive case
