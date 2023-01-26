@@ -136,11 +136,14 @@ var mainbox = []item{
 }
 
 // Recursive solution
+// every recusive function will have two parts
+// the base case
+// and the recursive case
 func lookForKey(items []item) {
 	for _, item := range items {
-		if item.isABox {
+		if item.isABox { // recursive case
 			lookForKey(item.items)
-		} else if item.name == "usb cord" {
+		} else if item.name == "usb cord" { // base case
 			fmt.Println("found usb cord")
 			fmt.Println("All items in box below")
 			fmt.Println(items)
