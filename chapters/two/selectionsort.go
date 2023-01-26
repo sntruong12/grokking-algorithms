@@ -26,8 +26,13 @@ func selectionSort(arr []int) []int {
 		// arr = append(arr[:smallestIndex], arr[smallestIndex+1:]...)
 		largestIndex := findLargest(arr)
 		newArr = append(newArr, arr[largestIndex])
-		arr = append(arr[:largestIndex], arr[largestIndex+1:]...)
+		arr = append(arr[:largestIndex], arr[largestIndex+1:]...) // this line basically creates a new array with elements before and after largestIndex - essential omits it from the original
 	}
+
+	// arr[:smallestIndex] creates a new slice that contains all elements of arr from the start of the slice to the element before the element at the smallestIndex.
+	// arr[smallestIndex+1:] creates a new slice that contains all elements of arr from the element after the element at the smallestIndex to the end of the slice.
+	// append(arr[:smallestIndex], arr[smallestIndex+1:]) concatenates these two slices together, effectively omitting the element at the smallestIndex from the resulting slice.
+	// ... is the variadic operator, which allows the append function to accept multiple slices as arguments.
 
 	return newArr
 }
