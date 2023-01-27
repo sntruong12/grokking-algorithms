@@ -81,3 +81,6 @@ func betterFindMaxNumber(arr []int, max int) int {
 	}
 	return betterFindMaxNumber(arr[1:], max)
 }
+
+// base case of binary search is if list is zero or one, then we know not to continue a recursive function as we know the answer
+// recursive case is based on what we are searching for, if it's greater than or less than the search query then we will continue the search function on the truthy case meaning first half or second half.
