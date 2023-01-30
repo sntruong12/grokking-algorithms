@@ -20,10 +20,10 @@ import (
 func main() {
 	start := time.Now()
 
-	item := 20500111
-	list := createSortedList(20500111)
-	position, err := binarySearch(list, item)
-	// position, err := simpleSearch(list, item)
+	item := 159354
+	list := createSortedList(205001)
+	// position, err := binarySearch(list, item)
+	position, err := simpleSearch(list, item)
 	if err != nil {
 		fmt.Printf("%d not found in list\n", item)
 	} else {
@@ -36,7 +36,7 @@ func main() {
 }
 
 func createSortedList(size int) []int {
-	list := make([]int, size)
+	list := make([]int, 0)
 	for i := 0; i < size; i++ {
 		list = append(list, i)
 	}
@@ -50,7 +50,7 @@ func binarySearch(sortedList []int, searchFor int) (int, error) {
 	high := len(sortedList) - 1
 
 	for low <= high {
-		mid := (low + high)
+		mid := (low + high) / 2
 		guess := sortedList[mid]
 		if guess == searchFor {
 			return mid, nil
