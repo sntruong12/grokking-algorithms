@@ -11,7 +11,10 @@ func main() {
 
 	// exercise4_1()
 	// exercise4_2()
-	exercise4_3()
+	// exercise4_3()
+
+	sorted := quickSort([]int{166, 65, 84553, 3, 2221, 38, 10, 1, 90, 547, 631, 711, 81, 9, 7, 9, 80})
+	fmt.Println(sorted)
 
 	duration := time.Since(start)
 	fmt.Printf("Elapsed Time: %.5fms\n", duration.Seconds()*1000)
@@ -119,7 +122,7 @@ func quickSort(arr []int) []int {
 		return arr
 	}
 
-	pivot := arr[len(arr)-1]
+	pivot := arr[len(arr)-1] // this can be any element
 	left := make([]int, 0, len(arr))
 	right := make([]int, 0, len(arr))
 
