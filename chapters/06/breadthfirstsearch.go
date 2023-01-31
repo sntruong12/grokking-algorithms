@@ -19,7 +19,11 @@ import (
 // 1. is there a path from node A to node B?
 // 2. what's the shortest path from node A to node B?
 
-// queues
+// queues are lists of things to do in a sequential order
+// you can't access random elements in the queue
+// there are only two operations enqueue (add an item to the queue) and dequeue (take an item off the queue)
+// the queue is called a FIFO data structure - first in first out
+// in contrast a stack is a LIFO data structure - last in first out
 
 func main() {
 	start := time.Now()
