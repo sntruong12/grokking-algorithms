@@ -31,3 +31,39 @@ func main() {
 	duration := time.Since(start)
 	fmt.Printf("Elapsed Time: %.5fms\n", duration.Seconds()*1000)
 }
+
+type apartmentResidents map[string]person
+
+type person struct {
+	name string
+	causedAFlood bool
+	neighbors []person
+}
+
+var (
+	centerline := apapartmentResidents{
+		"Yen": {
+			name: "Yen"
+			causedAFlood: false,
+			neighbors: []{
+				"4UnitsApartmentFlooder": {
+					name: "unknown",
+					causedAFlood: true,
+				}
+				"Terrance":{
+					causedAFlood: false
+				}
+			}
+		},
+		"4UnitsApartmentFlooder": {
+			causedAFlood: true,
+		},
+		"Terrance":{
+			causedAFlood: false
+		},
+	}
+)
+
+func breadthFirstSearch() {
+
+}
