@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"strings"
 	"time"
 )
 
@@ -28,42 +29,58 @@ import (
 func main() {
 	start := time.Now()
 
+	found := breadthFirstSearch("yen", "simpson")
+	fmt.Println(found)
+
 	duration := time.Since(start)
 	fmt.Printf("Elapsed Time: %.5fms\n", duration.Seconds()*1000)
 }
 
-type apartmentResidents map[string]person
+func breadthFirstSearch(startName, name string) bool {
+	searchQueue := make([]string, 0)
 
-type person struct {
-	name string
-	causedAFlood bool
-	neighbors []person
+	graph := map[string][]string{
+		"yen":        {"flooder", "josie", "son", "terrance"},
+		"son":        {"josie", "terrance"},
+		"terrance":   {"yen"},
+		"flooder":    {"yen", "jimbomango"},
+		"josie":      {"bob"},
+		"bob":        {"josie"},
+		"sally":      {},
+		"tishawn":    {},
+		"jimbomango": {"taylor", "simpson"},
+	}
+
+	searchQueue = graph[startName]
+
+	searched := map[string]bool{}
+
+	for len(searchQueue) > 0 {
+		person := searchQueue[0]
+		searchQueue = searchQueue[1:]
+
+		if _, ok := searched[person]; !ok {
+			if strings.EqualFold(person, name) {
+				fmt.Println("found this mango seller", person)
+				return true
+			}
+
+			searchQueue = append(searchQueue, graph[person]...)
+			searched[person] = true
+		}
+	}
+
+	fmt.Println("unable to the mango seller", name)
+	return false
 }
 
-var (
-	centerline := apapartmentResidents{
-		"Yen": {
-			name: "Yen"
-			causedAFlood: false,
-			neighbors: []{
-				"4UnitsApartmentFlooder": {
-					name: "unknown",
-					causedAFlood: true,
-				}
-				"Terrance":{
-					causedAFlood: false
-				}
-			}
-		},
-		"4UnitsApartmentFlooder": {
-			causedAFlood: true,
-		},
-		"Terrance":{
-			causedAFlood: false
-		},
+// contains checks if a string is present in a slice
+func contains(s []string, str string) bool {
+	for _, v := range s {
+		if v == str {
+			return true
+		}
 	}
-)
 
-func breadthFirstSearch() {
-
+	return false
 }
