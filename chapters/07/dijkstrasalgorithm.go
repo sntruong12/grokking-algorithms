@@ -10,7 +10,7 @@ import (
 
 // 4 main steps in Dijkstra's algorithm
 // ---
-// 1.  find the cheapest node - node you can get to in least amount of time
+// 1. find the cheapest node - node you can get to in least amount of time
 // 2. update the costs of the neighbors of this node
 // 3. repeat until you've done this for every node in graph
 // 4. calculate the final path
@@ -23,6 +23,10 @@ import (
 
 // graphs can also have cycles - you can start at a node and end up back at the same node - that's a cycle
 // Dijkstra's algorithm only works with directed acyclic graphs or graphs that don't contain cycles
+
+// create a table to track 3 variables, parent, node, cost
+// can't use this algorithm if negative weight edges (cost)
+// learn bellman-ford algorithm for graphs that contain negative weight edges
 
 func main() {
 	start := time.Now()
