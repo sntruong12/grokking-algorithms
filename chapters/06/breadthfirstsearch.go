@@ -29,7 +29,7 @@ import (
 func main() {
 	start := time.Now()
 
-	found := breadthFirstSearch("yen", "simpson")
+	found := breadthFirstSearch("yen", "tishawn")
 	fmt.Println(found)
 
 	duration := time.Since(start)
@@ -44,9 +44,9 @@ func breadthFirstSearch(startName, name string) bool {
 		"son":        {"josie", "terrance"},
 		"terrance":   {"yen"},
 		"flooder":    {"yen", "jimbomango"},
-		"josie":      {"bob"},
+		"josie":      {"bob", "sally"},
 		"bob":        {"josie"},
-		"sally":      {},
+		"sally":      {"tishawn"},
 		"tishawn":    {},
 		"jimbomango": {"taylor", "simpson"},
 	}
