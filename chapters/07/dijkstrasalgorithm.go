@@ -109,3 +109,14 @@ func findLowestUnprocessedCostNode(costs map[string]int, processed map[string]bo
 
 	return node
 }
+
+// notes from chatgpt
+// Yes, this implementation can be optimized in several ways:
+
+// The use of a map for costs and processed is less efficient than using a priority queue or a binary heap, as it requires a linear search for the node with the lowest cost. By using a priority queue or a binary heap, you can extract the node with the lowest cost in O(1) time and update the cost of a node in O(log n) time, making the overall algorithm faster.
+
+// Instead of initializing the costs map with all nodes and their costs, you could start with an empty map and add the first node (the starting node) with its cost. This avoids the need to initialize the costs of all nodes.
+
+// You could add early termination conditions to the algorithm, such as checking if the current node is the end node, and if so, returning the result immediately, instead of continuing to process all other nodes.
+
+// By implementing these optimizations, the algorithm's runtime could be reduced, making it more efficient and suitable for large graphs.
