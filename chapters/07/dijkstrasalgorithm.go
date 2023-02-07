@@ -31,6 +31,20 @@ import (
 func main() {
 	start := time.Now()
 
+	dijkstras()
+
 	duration := time.Since(start)
 	fmt.Printf("Elapsed Time: %.5fms\n", duration.Seconds()*1000)
+}
+
+func dijkstras() {
+	graph := map[string]map[string]int{
+		"start": {
+			"A": 6,
+			"B": 2,
+		},
+	}
+
+	fmt.Println(graph["start"]["A"])
+	fmt.Println(graph["start"]["B"])
 }
