@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"math"
 	"time"
 )
 
@@ -28,6 +29,8 @@ import (
 // can't use this algorithm if negative weight edges (cost)
 // learn bellman-ford algorithm for graphs that contain negative weight edges
 
+const infinity = math.MaxInt32
+
 func main() {
 	start := time.Now()
 
@@ -39,7 +42,6 @@ func main() {
 
 func dijkstras() {
 	graph := map[string]map[string]int{}
-
 	graph["start"] = map[string]int{}
 	graph["start"]["a"] = 6
 	graph["start"]["b"] = 2
@@ -54,4 +56,21 @@ func dijkstras() {
 	graph["fin"] = map[string]int{}
 
 	fmt.Println(graph)
+
+	costs := map[string]int{}
+	costs["a"] = 6
+	costs["b"] = 2
+	costs["fin"] = infinity
+
+	fmt.Println(costs)
+
+	parents := map[string]string{}
+	parents["a"] = "start"
+	parents["b"] = "start"
+	parents["fin"] = ""
+
+	fmt.Println(parents)
+
+	processed := []string{}
+
 }
