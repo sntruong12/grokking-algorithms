@@ -62,6 +62,7 @@ func dijkstras() {
 	costs["b"] = 2
 	costs["fin"] = infinity
 
+	fmt.Println("costs")
 	fmt.Println(costs)
 
 	parents := map[string]string{}
@@ -69,8 +70,42 @@ func dijkstras() {
 	parents["b"] = "start"
 	parents["fin"] = ""
 
+	fmt.Println("parents")
 	fmt.Println(parents)
 
-	processed := []string{}
+	processed := map[string]bool{}
 
+	node := findLowestUnprocessedCostNode(costs, processed) // find lowest code nost that you haven't processed yet
+	for node != "" {                                        // if processed all the nodes - loop will exit
+		cost := costs[node]
+		neighbors := graph[node]
+
+		for k := range neighbors { // go thru all neighbors of this node
+			newCost := cost + neighbors[k]
+			if costs[k] > newCost { // if it's cheaper to get to this neighbor by going thru this node ...
+				costs[k] = newCost // ... update the cost for this node
+				parents[k] = node  // this node becomes the new parent for this neighbor
+			}
+		}
+		processed[node] = true                                 // mark node as processed
+		node = findLowestUnprocessedCostNode(costs, processed) // find the next node to process and loop
+	}
+
+	fmt.Println("finished costs and parents")
+	fmt.Println("==================================")
+	fmt.Println(costs)
+	fmt.Println(parents)
+}
+
+func findLowestUnprocessedCostNode(costs map[string]int, processed map[string]bool) string {
+	lowest := infinity
+	node := ""
+	for k, v := range costs { // go thru each node
+		if _, ok := processed[k]; !ok && v < lowest { // if it's the lowest cost so far and hasn't been processed yet ..
+			lowest = v // ... set it as the new lowest cost node
+			node = k
+		}
+	}
+
+	return node
 }
